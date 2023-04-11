@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UTShehe</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="weather">Current Weather in</string>
+    <string name="humidity">Humidity: </string>
+    <string name="win_speed">Win Speed: </string>
+</resources>

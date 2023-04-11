@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UTShehe</string>
+    <string name="title_activity_maps">judul_activity_maps</string>
+    <string name="weather">Cuaca Hari ini di</string>
+    <string name="humidity">"Kelembaban: "</string>
+    <string name="win_speed">"Kecepatan Angin: "</string>
+</resources>
