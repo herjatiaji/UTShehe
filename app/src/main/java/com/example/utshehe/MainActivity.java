@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     RelativeLayout mCityFinder;
     Button compassBtn;
+    String winspedd,humid,temp,cityyy;
 
     LocationManager mLocationManager;
     LocationListener mLocationListner;
@@ -61,12 +62,9 @@ public class MainActivity extends AppCompatActivity {
         Temperature = findViewById(R.id.suhu);
         Humidity = findViewById(R.id.humidity_content);
         WinsSpeed = findViewById(R.id.winspeed_content);
-//        Paper.book().write("City",);
-        Intent intent2 = new Intent();
+        Intent intent2 = getIntent();
         String city2 = intent2.getStringExtra("city");
-        prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        prefsEditor = prefs.edit();
-        prefsEditor.putString("STOREDVALUE",city2);
+
         compassBtn = findViewById(R.id.btn_compass);
 
         compassBtn.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +133,23 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Data Get Success",Toast.LENGTH_SHORT).show();
 
                 weatherData weatherD=weatherData.fromJson(response);
+                winspedd = weatherD.getmWinsSpeed();
+                cityyy = weatherD.getMcity();
+                humid =  weatherD.getmHumidity();
+                temp = weatherD.getmTemperature();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("temp", temp);
+                editor.putString("cityyy",cityyy);
+                editor.apply();
+
+
+
+
+
+
+
                 updateUI(weatherD);
             }
 
@@ -161,10 +176,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+    }
+    private void sendData(){
+        Paper.init(this);
+        Intent intent2 = getIntent();
+        String city2 = intent2.getStringExtra("city");
+        Paper.book().write("cityname",city2);
+        Paper.book().write("temperat",temp);
+        Paper.book().write("winspd", winspedd);
+        Paper.book().write("humidty",humid);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
     }
+
 }

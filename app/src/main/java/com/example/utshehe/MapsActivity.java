@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import io.paperdb.Paper;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -42,6 +44,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         searchView = findViewById(R.id.sv_location);
+
+        Paper.init(this);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
